@@ -1,0 +1,4 @@
+dash
+plotly_express
+s3pathlib
+boto3

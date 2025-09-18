@@ -1,0 +1,41 @@
+services:
+    python:
+        build: .
+        ports:
+        - "8081:8081"
+        container_name: dice_sim
+        volumes:
+        - dice:/app/src
+        depends_on:
+        - initialize-s3service
+        networks:
+            - s3net
+
+    s3service:
+        image: quay.io/minio/minio:latest
+        container_name: s3
+        command: server --console-address ":9011" /data
+        ports:
+        - "9010:9010" 
+        - "9011:9011" 
+        env_file: minio.env
+        volumes:
+        - store:/data
+        networks:
+            - s3net
+    initialize-s3service:
+        image: quay.io/minio/mc
+        depends_on:
+        - s3service
+        env_file: minio.env
+        entrypoint: >
+                  /bin/sh -c ' sleep 5; /usr/bin/mc alias set s3service http://s3service:9000 "$${MINIO_ROOT_USER}" "$${MINIO_ROOT_PASSWORD}"; /usr/bin/mc mb s3service/"$${BUCKET_NAME}" ; /usr/bin/mc admin user add s3service "$${ACCESS_KEY}" "$${SECRET_KEY}"; /usr/bin/mc admin policy attach s3service readwrite --user "$${ACCESS_KEY}"; exit 0; '
+        networks:
+            - s3net            
+volumes:
+  dice:
+  store:
+
+networks:
+    s3net:
+        driver: bridge
