@@ -1,9 +1,7 @@
-# Lecture 0 - bash commands :computer:
-
-This lecture note contains some basic bash commands and some basic bash scripting. You can use this as base, but need to study on by yourself in the resources given and also do the exercises provided.
+# bash commands
 
 ---
-## Navigation :compass:
+## Navigation
 
 Where am I? How do I jump out to see my parents and then back in? 
 
@@ -16,8 +14,8 @@ cd <directory_name>
 Okay, let's a directory called Lec0_bash using mkdir short for (make directory). Now change to this directory, aha cd stands for change directory. 
 
 ```bash
-mkdir Lec0_bash
-cd Lec0_bash
+mkdir Exercise_bash
+cd Exercise_bash
 ```
 
 When working data engineering or data science it is nice to have a data directory, so we'll create it. Also we'll check the airquality in Göteborg in this lecture so we also create the subdirectory called **airquality**. 
@@ -73,7 +71,7 @@ echo "Joke made $(date '+%Y-%m-%d %H:%M')\nHey siri, call a cab.\nSiri says: Hel
 
 ```
 ---
-## Download and save json data :floppy_disk:
+## Download and save json data
 
 Now we have enough skills to download airquality data from API and save it in this format: YYMMDD_HH:00.json using. Link for finding [airquality in Göteborg](https://www.dataportal.se/sv/datasets/66_70346/luftkvalitet-api#ref=?p=1&q=g%C3%B6teborg&s=2&t=20&f=&rt=dataset%24esterms_IndependentDataService%24esterms_ServedByDataService&c=false).
 
@@ -84,7 +82,7 @@ cat <path_to_file>
 ```
 
 ---
-## Simple script to structure your repo :open_file_folder:
+## Simple script to structure your repo
 
 Create a bash script and open it for editing. 
 
